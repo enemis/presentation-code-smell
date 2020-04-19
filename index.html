@@ -1,0 +1,1545 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/beige.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/github-gist.css">
+	<link rel="stylesheet" href="css/custom.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+		<section data-background="img/propellerbg.png">
+		<h2>Be</h2><h1>SOLID</h1> <h2>not</h2> <h1>STUPID</h1>
+		</section>
+		<section>
+		<aside class="notes">
+			<p>Поговорим</p>
+			<p>Почему качество кода важно.</p>
+			<p>кто в этом виноват.</p>
+			<p>помочь в борьбе с плохим кодом.</p>
+
+			<p>Конец: Выясним последствия наличия плохого кода в проекте.</p>
+		</aside>
+		<table class="about">
+		<h2>
+		Стадник Андрей
+		</h2>
+		<tr>
+		<td style="vertical-align: middle">
+		<img src="img/my_photo.jpg">
+		</td>
+		<td style="vertical-align: middle">
+
+		<h5>Ведущий разработчик "ЭДСервер"</h5>
+		<p>10 лет в разработке</p>
+		<ol style="list-style: none">
+		<li>
+		<img style="background: #222;padding: 10px" src="img/logo_propellerads32.png">
+		</li>
+		<li>
+		<img src="img/wren.jpg">
+		</li>
+		<li><img src="img/gruzer.png"></li>
+		</ol>
+		</td>
+		</tr>
+		</table>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>Плохой код может быть написан</li>
+					<li>
+						Неопытный программист
+					</li>
+					<li>Опытный программист</li>
+					<li>Рост тех долга</li>
+				</ul>
+			</aside>
+			<h2>Расплата за плохой код</h2>
+			<ul>
+				<li>
+					Рост тех. долга
+				</li>
+				<li>
+					Сложность поддержки
+				</li>
+				<li>
+					Уменьшение производительности команды
+				</li>
+				<li>
+					Крах всего проекта
+				</li>
+			</ul>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>обычно на тех долг нет времени.</li>
+					<li>Хаос в коде и. Теория разбитых окон</li>
+					<li>
+						Снижение производительности
+					</li>
+					<li>Банкротство и крах проекта</li>
+					<li>Означает что код пахнет</li>
+					<li>Как не допустить накопление тех долга в коде и что это означает термин CODE SMELL</li>
+				</ul>
+			</aside>
+			<img src="img/refactor_none.jpg">
+		</section>
+		<section><img src="img/code_smells.jpeg"></section>
+		<section>
+			<h2>
+				Code smells
+			</h2>
+			<table>
+				<tr>
+					<td>
+						<img src="img/kentback.jpg">
+					</td>
+					<td style="vertical-align: middle">
+						<h4>
+							Кент Бек
+						</h4>
+						<ol>
+							<li>
+								Методология XP (не виндовс)
+							</li>
+							<li>
+								Методология TDD
+							</li>
+							<li>Фреймворк jUnit</li>
+						</ol>
+					</td>
+				</tr>
+			</table>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Признаки необходимости рефакторинга
+					</li>
+					<li>
+						Нечетко формализированы
+					</li>
+					<li>
+						Обнаруживаются при взаимодействии с кодом
+					</li>
+					<li>
+						Умение выявлять приходит с опытом
+					</li>
+				</ul>
+			</aside>
+			<h2>
+				Запахи кода
+			</h2>
+			<ul>
+				<li>
+					Признаки необходимости рефакторинга
+				</li>
+				<li>
+					Нечетко формализированы
+				</li>
+				<li>
+					Обнаруживаются при взаимодействии с кодом
+				</li>
+				<li>
+					Умение выявлять приходит с опытом
+				</li>
+			</ul>
+		</section>
+		<section>
+			<aside class="notes">
+				Долго работая программистом я искал оправдание своему плохому коду
+				<ul>
+					<li>
+						я обвинял плотный график - нет времени
+					</li>
+					<li>
+						Неадекватное начальство - больше фич
+					</li>
+					<li>
+						Не терпимые клиенты - сдача проекта в дедлайн
+					</li>
+					<li>
+						Бестолковые коллеги - которые всегда пишут плохо
+					</li>
+					<li>Представился момент - сделать идеально</li>
+				</ul>
+			</aside>
+			<h2>Причины плохого кода</h2>
+			<ul>
+				<li>
+					Плотный график
+				</li>
+				<li>
+					Неадекватное начальство (product owners)
+				</li>
+				<li>
+					Нетерпимые клиенты (business owners)
+				</li>
+				<li>
+					Бестолковые коллеги
+				</li>
+			</ul>
+		</section>
+		<section>
+			<aside class="notes">
+
+			</aside>
+			<div class="new-project">
+
+				<p><img src="img/start_project.png"></p>
+				<p class="fragment fade-up"><img src="img/end_project.png"></p>
+			</div>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						вина лежит не на них
+					</li>
+					<li>
+						Все дело было в непрофессонализме
+					</li>
+					<li>
+						Принимаем самое активное участие
+					</li>
+					<li>
+						несем ответственноть за провалы
+					</li>
+					<li>запах плохого кода? Какие симптомы знаете вы?</li>
+				</ul>
+			</aside>
+			<p>
+				<img src="img/blame_yourself.png">
+			</p>
+		</section>
+		<section>
+			<aside class="notes">
+				<img src="/img/cross.png">
+			</aside>
+			<div class="cross">
+				<div class="cross-row">
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell">M</div>
+					<div class="cross-cell">E</div>
+					<div class="cross-cell">S</div>
+					<div class="cross-cell main-cell">S</div>
+					<div class="cross-cell">A</div>
+					<div class="cross-cell">G</div>
+					<div class="cross-cell">E</div>
+					<div class="cross-cell"> </div>
+					<div class="cross-cell">C</div>
+					<div class="cross-cell">H</div>
+					<div class="cross-cell">A</div>
+					<div class="cross-cell">I</div>
+					<div class="cross-cell">N</div>
+					<div class="cross-cell">S</div>
+				</div>
+				<div class="cross-row">
+					<div class="cross-cell">r</div>
+					<div class="cross-cell">e</div>
+					<div class="cross-cell">p</div>
+					<div class="cross-cell">a</div>
+					<div class="cross-cell">r</div>
+					<div class="cross-cell">a</div>
+					<div class="cross-cell">m</div>
+					<div class="cross-cell">e</div>
+					<div class="cross-cell  main-cell">t</div>
+					<div class="cross-cell">e</div>
+					<div class="cross-cell">r</div>
+					<div class="cross-cell">i</div>
+					<div class="cross-cell">z</div>
+					<div class="cross-cell">a</div>
+					<div class="cross-cell">t</div>
+					<div class="cross-cell">i</div>
+					<div class="cross-cell">o</div>
+					<div class="cross-cell">n</div>
+				</div>
+				<div class="cross-row">
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell">S</div>
+					<div class="cross-cell">H</div>
+					<div class="cross-cell">O</div>
+					<div class="cross-cell">T</div>
+					<div class="cross-cell">G</div>
+					<div class="cross-cell main-cell">U</div>
+					<div class="cross-cell">N</div>
+					<div class="cross-cell"> </div>
+					<div class="cross-cell">S</div>
+					<div class="cross-cell">U</div>
+					<div class="cross-cell">R</div>
+					<div class="cross-cell">G</div>
+					<div class="cross-cell">E</div>
+					<div class="cross-cell">R</div>
+					<div class="cross-cell">Y</div>
+				</div>
+				<div class="cross-row">
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell">o</div>
+					<div class="cross-cell main-cell">p</div>
+					<div class="cross-cell">t</div>
+					<div class="cross-cell">i</div>
+					<div class="cross-cell">m</div>
+					<div class="cross-cell ">i</div>
+					<div class="cross-cell">z</div>
+					<div class="cross-cell">a</div>
+					<div class="cross-cell">t</div>
+					<div class="cross-cell">i</div>
+					<div class="cross-cell">o</div>
+					<div class="cross-cell">n</div>
+				</div>
+
+				<div class="cross-row">
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell">D</div>
+					<div class="cross-cell">U</div>
+					<div class="cross-cell ">P</div>
+					<div class="cross-cell">L</div>
+					<div class="cross-cell main-cell">I</div>
+					<div class="cross-cell">C</div>
+					<div class="cross-cell">A</div>
+					<div class="cross-cell">T</div>
+					<div class="cross-cell">I</div>
+					<div class="cross-cell">O</div>
+					<div class="cross-cell">N</div>
+				</div>
+				<div class="cross-row">
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell">d</div>
+					<div class="cross-cell">e</div>
+					<div class="cross-cell ">a</div>
+					<div class="cross-cell main-cell">d</div>
+					<div class="cross-cell"> </div>
+					<div class="cross-cell">c</div>
+					<div class="cross-cell">o</div>
+					<div class="cross-cell">d</div>
+					<div class="cross-cell">e</div>
+				</div>
+				<div class="cross-row">
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell">m</div>
+					<div class="cross-cell">a</div>
+					<div class="cross-cell main-cell">c</div>
+					<div class="cross-cell ">a</div>
+					<div class="cross-cell">r</div>
+					<div class="cross-cell">o</div>
+					<div class="cross-cell">n</div>
+					<div class="cross-cell">i</div>
+				</div>
+
+				<div class="cross-row">
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell">g</div>
+					<div class="cross-cell">o</div>
+					<div class="cross-cell">d</div>
+					<div class="cross-cell"> </div>
+					<div class="cross-cell main-cell">o</div>
+					<div class="cross-cell">b</div>
+					<div class="cross-cell">j</div>
+					<div class="cross-cell">e</div>
+					<div class="cross-cell ">c</div>
+					<div class="cross-cell">t</div>
+				</div>
+				<div class="cross-row">
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell">b</div>
+					<div class="cross-cell">a</div>
+					<div class="cross-cell main-cell">d</div>
+					<div class="cross-cell">n</div>
+					<div class="cross-cell">a</div>
+					<div class="cross-cell">m</div>
+					<div class="cross-cell">i</div>
+					<div class="cross-cell">n</div>
+					<div class="cross-cell">g</div>
+				</div>
+				<div class="cross-row">
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell empty-cell"></div>
+					<div class="cross-cell">c</div>
+					<div class="cross-cell">o</div>
+					<div class="cross-cell ">m</div>
+					<div class="cross-cell">m</div>
+					<div class="cross-cell main-cell">e</div>
+					<div class="cross-cell">n</div>
+					<div class="cross-cell">t</div>
+					<div class="cross-cell">s</div>
+				</div>
+
+
+			</div>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>Работает много человек</li>
+					<li>
+						Одно и тоже выражение в одном и более методах класса
+					</li>
+					<li>
+						Одно и тоже выражение в классах потомках одного родителя
+					</li>
+					<li>
+						Одно и тоже выражение в несвязанных классах бизнес логики
+					</li>
+				</ul>
+			</aside>
+			<h2>Дублирование кода</h2>
+			<ul>
+				<li>
+					Одно и тоже выражение в одном и более методе класса
+				</li>
+				<li>
+					Одно и тоже выражение в классах потомках одного родителя
+				</li>
+				<li>
+					Одно и тоже выражение в несвязанных классах бизнес логики
+				</li>
+			</ul>
+			<pre>
+						<code data-trim data-noescape>
+							function ringSurface($r1,$r2) {
+							   $surf1 = $this->bigCircleSurface(r1);
+							   $surf2 = $this->smallCircleSurface(r2);
+							   return $surf1 - $surf2;
+							}
+
+							private function bigCircleSurface($r1) {
+							    $pi = 4 * (atan 1/2 + atan(1/3) );
+							    return $pi*sqr($r1);
+							}
+
+							private function smallCircleSurface($r2) {
+							    $pi = 4 * (atan (1/2) + atan(1/3) );
+							    return $pi*sqr($r2);
+							}
+					</code>
+				</pre>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>Лишний: Поддержка mongo DB</li>
+					<li>Излишний: Elastic для поиска на сайте визитке</li>
+					<li>
+						Создать переменную или вызвать 5 раз getter?
+					</li>
+					<li>Антипаттерн бер нагрузки есть только стоимость работ и отсутствие какой либо выгоды</li>
+				</ul>
+			</aside>
+			<h2>Преждевременная оптимизация</h2>
+			<blockquote>Premature optimization is the root of all evil. <i style="text-align: right">DonaldKnuth</i></blockquote>
+			<ul>
+				<li>
+					Лишний функционал
+				</li>
+				<li>
+					Излишний функционал
+				</li>
+				<li>
+					Оптимизация медленного кода
+				</li>
+			</ul>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>Минимум аргументов</li>
+					<li>Больше 3 создай структуру</li>
+					<li>Флаги - у функции несколько ответственностей</li>
+				</ul>
+			</aside>
+			<h2>Большое количество параметров</h2>
+			<ul>
+				<li>
+					Аргументы усложняют функции
+				</li>
+				<li>
+					Аргументы усложняют тестирование
+				</li>
+				<li>
+					Аргументы - флаги подразумевают несколько действий
+				</li>
+			</ul>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>Все в одно месте</li>
+					<li>Много задач </li>
+					<li>Нужно разделять на маленькие кусочки</li>
+				</ul>
+			</aside>
+			<h2>Божественный объект</h2>
+			<img src="img/godObject.png">
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Передает намерения
+					</li>
+					<li>
+						Не дезинформирует
+					</li>
+					<li>
+						Удобно искать и произносить
+					</li>
+				</ul>
+			</aside>
+			<h2>Плохое именование</h2>
+			<ul>
+				<li>
+					имена должны передавать намерения программиста
+					<pre><code data-trim data-noescape>$d; // Прошедшее время -> daysSinceCreation</code></pre>
+				</li>
+				<li>
+					избегайте дезинформации
+					<pre><code data-trim data-noescape>$userList -> $userGroup</code></pre>
+				</li>
+				<li>
+					используйте удобопроизносимые имена
+					<pre><code data-trim data-noescape>
+									$genymdhms -> $generationTimestamp
+								</code></pre>
+				</li>
+				<li>
+					выбирайте имена, удобные для поиска
+					<pre><code data-trim data-noescape>
+									const PDW -> WORK_DAYS_PER_WEEK
+								</code></pre>
+				</li>
+				<li>
+					избегайте префиксы и суффиксы
+					<pre><code data-trim data-noescape>
+								$iCount -> $count
+								interface ShapeFactoryInterface -> interface ShapeFactory
+							</code></pre>
+				</li>
+			</ul>
+		</section>
+		<section class="comments">
+			<aside class="notes">
+				<ul>
+					<li>
+						Не засоряйте  TODO
+					</li>
+					<li>
+						Php doc подсказки для среды
+					</li>
+				</ul>
+			</aside>
+			<h2>Комментарии</h2>
+			<div class="">
+				<h4>
+					Возможные комментарии в коде.
+				</h4>
+				<ul>
+					<li>
+						юридические комментарии
+					</li>
+
+					<li class="">
+						phpdoc (иногда)
+					</li>
+					<li class="">
+						TODO (иногда)
+					</li>
+				</ul>
+				<pre class="">
+										<code data-trim data-noescape>
+											/**
+											 * @licence Creative Commons
+											 * http://creativecommons.org/licenses/by-sa/3.0/deed.ru
+											 *
+											 * TODO remove as soon as Task-777 will be implemented.
+											 *
+											 * @deprecated
+											 * @param User[]|ArrayCollection $managers
+											 */
+											 public function setManagers($managers)
+											 {
+												$this->managers = $managers;
+											 }
+										</code>
+									</pre>
+			</div>
+		</section>
+		<section class="comments">
+			<aside class="notes">
+				<ul>
+					<li>
+						Истина только в коде
+					</li>
+					<li>
+						Не удается выразить свои мысли в коде
+					</li>
+					<li>
+						Пишите коммент - поморщитесь и ощутите неудачу
+					</li>
+					<li>
+						Нашли способ не писать комент - это маленькая победа
+					</li>
+
+				</ul>
+			</aside>
+			<h2>Комментарии</h2>
+			<div class="">
+				<h4>
+					Пахнущие комментарии в коде.
+				</h4>
+				<ul>
+					<li class="">
+						phpdoc (часто)
+					</li>
+					<li class="">
+						уточняющие комментарии
+					</li>
+					<li class="">
+						поясняющие комментарии
+					</li>
+					<li class="">
+						закомментированный код
+					</li>
+				</ul>
+				<pre class="">
+								<code data-trim data-noescape>
+									 /**
+									 * Gets total profit amount. //really?
+									 *
+									 * @param QueryBuilder $qb //Nemojet but
+									 * @return int //kakoy poleznuy comment
+									 */
+									public function getTotalProfit(QueryBuilder $qb): int
+									{
+										$qb->select('SUM(CompletedOrders.profit)');
+										$this->addCriteria($qb);
+									    //$this->addAnotherCriteria($qb);
+										return $qb->getQuery()->getSingleScalarResult();
+									}
+								</code>
+							</pre>
+			</div>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>Мертвый: Может увеличить время исполнения</li>
+					<li>Недостижимый: Может потерятся навсегда</li>
+					<li>
+						Избавляйтесь от мертвого или недостижимого кода сразу
+					</li>
+
+				</ul>
+			</aside>
+			<h2>
+				Мертвый и недостижимый код
+			</h2>
+			<h3>Мертвый код</h3>
+			<pre>
+							<code data-trim data-noescape>
+								$a = 2; //мертвый код
+								$b = 12
+								$c = $a * $b; //мертвый код
+								return $b;
+							</code>
+						</pre>
+			<h3>Недостижимый код</h3>
+			<pre>
+								<code data-trim data-noescape>
+									class PriceCalculator {
+										private static function springDiscount($price) {
+											return $price * 0.9; // недостижимый код
+										}
+
+										public static function getItemPrice(OrderItem $item, int $quantity) {
+										return $item->getPrice() * $quantity;
+									}
+								}
+								</code>
+							</pre>
+		</section>
+		</section>
+		<section>
+			<h2>Спагетти код</h2>
+			<pre>
+							<code data-trim data-noescape>
+								function checkSmth($a, $b, $c) {
+									if ($a > 12) {
+										$this->doSomething();
+										if ($b < $a) {
+											$this->doSomething2();
+											if ($c * $b < $a ()) {
+												$this->doSomething3();
+											}
+										} else {
+											$this->doSomethingIfNot1()
+										}
+									}
+								}
+							</code>
+						</pre>
+		</section>
+		<section>
+			<h2>
+				Принципы проектирования спешат на помощь
+			</h2>
+			<img src="img/speshat.jpg">
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Достаточно внесение исправлений в одном месте
+					</li>
+					<li>
+						Упрощение и декомпозиция сложных алгоритмов
+					</li>
+					<li> DRY гласит, что не нужно дублировать знания</li>
+					<li> DRY не требует, делать код многократно используемым</li>
+				</ul>
+			</aside>
+			<h2>
+				DRY (do not repeat yourself)
+			</h2>
+			<img src="img/dry.jpeg">
+		</section>
+		<section>
+			<h2>
+				DRY (do not repeat yourself)
+			</h2>
+			<pre>
+						<code data-trim data-noescape>
+							class PriceCalculator {
+							  private static function springDiscount($price) {
+							    return $price * 0.9;
+							  }
+							  public static function getItemPrice(OrderItem $item, int $quantity) {
+								return $this->springDiscount($item->getPrice() * $quantity);
+							  }
+							}
+
+							class Order {
+							  public function calculatePrice() {
+							    $price = 0;
+							    foreach($this->orderItems as $orderItem) {
+							      $price += $orderItem;
+							    }
+
+							    return $price * (SeasonChecker::isSpring() ? 0.9 : 1);
+							  }
+							}
+						</code>
+					</pre>
+		</section>
+		<section>
+			<h2>
+				DRY (do not repeat yourself)
+			</h2>
+			<pre>
+						<code data-trim data-noescape>
+							class CsvValidation {
+							  public function validateProduct(array $product) {
+								if (!isset($product['color'])) {
+									throw new \Exception('Import fail: attribute color is missing');
+								}
+
+								if (!isset($product['size'])) {
+									throw new \Exception('Import fail: attribute size is missing');
+								}
+
+								if (!isset($product['type'])) {
+									throw new \Exception('Import fail: attribute type is missing');
+								}
+							  }
+							}
+						</code>
+					</pre>
+		</section>
+		<section>
+			<h2>
+				DRY (do not repeat yourself)
+			</h2>
+			<pre>
+						<code data-trim data-noescape>
+							class Shipment {
+								 public $deliveryTime = 4;
+
+								 public function calculateDeliveryDay(): DateTime
+								 {
+									 return new \DateTime("now +{$this->deliveryTime} day");
+								 }
+							}
+
+							class OrderReturn {
+								public $returnLimit = 4;
+
+								public function calculateLastReturnDay(): DateTime
+								{
+									 return new \DateTime("now +{$this->returnLimit} day");
+								}
+							}
+						</code>
+					</pre>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Дублирование знания всегда является нарушением принципа DRY
+					</li>
+					<li>
+						Дублирование кода не обязательно нарушает принцип DRY
+					</li>
+					<li>Бывают совпадения в бизнес логике</li>
+				</ul>
+			</aside>
+			<h2>
+				DRY (do not repeat yourself)
+			</h2>
+			<ul>
+				<li>
+					Дублирование знания всегда является нарушением принципа DRY
+				</li>
+				<li>
+					Дублирование кода не обязательно нарушает принцип DRY
+				</li>
+				<li>Бывают совпадения в бизнес логике</li>
+			</ul>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Всегда реализовывайте функционал который действительно нужен
+					</li>
+					<li>
+						Никогда не реализовывайте функционал который может понадобится в будущем
+					</li>
+					<li>
+						Не оптимизируйте производительность кода, пока это действительно не будет нужно
+					</li>
+				</ul>
+			</aside>
+			<h2>
+				YAGNI «You aren't gonna need it» <small>(Вам это не понадобится)</small>
+			</h2>
+			<ul>
+				<li>
+					Всегда реализовывайте функционал который действительно нужен
+				</li>
+				<li>
+					Никогда не реализовывайте функционал который может понадобится в будущем
+				</li>
+				<li>
+					Не оптимизируйте производительность кода, пока это действительно не будет нужно
+				</li>
+			</ul>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Выбирая между двумя реализациями выбирайте ту которая проще
+					</li>
+					<li>
+						Постоянно упрощайте Ваш код
+					</li>
+					<li>
+						Чем проще Ваш код, тем лучше Вы как разработчик
+					</li>
+				</ul>
+			</aside>
+			<h2>
+				KISS “Keep it simple, stupid”
+			</h2>
+			<ul>
+				<li>
+					Выбирая между двумя реализациями выбирайте ту которая проще
+				</li>
+				<li>
+					Постоянно упрощайте Ваш код
+				</li>
+				<li>
+					Чем проще Ваш код, тем лучше Вы как разработчик
+				</li>
+			</ul>
+		</section>
+		<section>
+			<h2>Разница между YAGNI и KISS</h2>
+			<img src="img/kiss_vs_yagni.png">
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>Солид продаваемый акроним</li>
+					<li>
+						Хороший писатель
+					</li>
+					<li>
+						Ключевое отличие рассматривается в контексте OOP
+					</li>
+					<li>
+						Не стоит не дооценивать SOLID
+					</li>
+					<li>
+						Чистая архитектура
+					</li>
+					<li>
+						Проектирует модули способствуют изменениям
+					</li>
+					<li>
+						Проектирует модули  легко понимаемы
+					</li>
+					<li>Повторно используемы</li>
+				</ul>
+			</aside>
+			<h2>Solid</h2>
+			<img src="img/something-smells-its-your-code%20(1).jpg">
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>Закрепощённость - трудно изменять, эффект снежного кома</li>
+					<li>
+						Неустойчивость - разрушается в местах не имеющих отношения к изменяемому компоненты
+					</li>
+					<li>Вязкость - сделать правильно сложнее чем кое как</li>
+					<li>
+						Неподвижность сложность разделить на компоненты
+					</li>
+					<li>
+						Неоправданная сложность
+					</li>
+					<li>
+						Неоправданные повторения
+					</li>
+					<li>Неопределенность трудно читать понимать</li>
+				</ul>
+			</aside>
+			<h2>Solid</h2>
+			<h3>Проблемы архитектуры</h3>
+			<ul>
+				<li>Закрепощённость</li>
+				<li>
+					Неустойчивость
+				</li>
+				<li>
+					Неподвижность
+				</li>
+				<li>
+					Неоправданная сложность
+				</li>
+				<li>
+					Неоправданные повторения
+				</li>
+				<li>Неопределенность</li>
+				<li>Вязкость</li>
+			</ul>
+		</section>
+		<section>
+			<h2>Solid</h2>
+			<ul>
+				<li>Принцип единственной(персональной) ответственности (The Single Responsibility Principle)  SRP</li>
+				<li>Принцип открытости/закрытости (The Open Closed Principle) OCP</li>
+				<li>Принцип подстановки Барбары Лисков (The Liskov Substitution Principle) LSP</li>
+				<li>Принцип разделения интерфейса (The Interface Segregation Principle) ISP</li>
+				<li>Принцип инверсии зависимостей (The Dependency Inversion Principle) DIP</li>
+			</ul>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Класс решает одну задачу
+					</li>
+					<li>Все методы и свойства служат одной цели</li>
+					<li>Если класс решает несколько задач его стоит разделить </li>
+				</ul>
+			</aside>
+			<h2>Single Responsibility Principle</h2>
+		    <h4>Принцип единственной(персональной) ответственности</h4>
+			<blockquote>
+				Каждый объект должен иметь одну ответственность и эта ответственность должна быть полностью инкапсулирована в класс. Все его поведения должны быть направлены исключительно на обеспечение этой ответственности.
+			</blockquote>
+		</section>
+		<section>
+			<aside class="notes">
+				Существует лишь одна причина, приводящая к изменению класса.
+			</aside>
+			<h2>Single Responsibility Principle</h2>
+			<pre>
+						<code data-trim data-noescape>
+							class OrdersReport {
+							  public function getOrdersInfo($startDate, $endDate) {
+							    $orders = $this->queryDBForOrders($startDate, $endDate);
+
+							    return $this->format($orders);
+							}
+
+							protected function queryDBForOrders($startDate, $endDate) {
+							  return DB::table('orders')->whereBetween(
+								'created_at', [$startDate, $endDate])->get();
+							}
+
+							protected function format($orders) {
+							  return '&lt;h1>Orders: ' . $orders . ' &lt;/h1>';
+							}
+						}
+						</code>
+					</pre>
+		</section>
+		<section>
+			<h2>Single Responsibility Principle</h2>
+			<blockquote>
+				Существует лишь одна причина, приводящая к изменению класса.
+			</blockquote>
+			<pre>
+						<code data-trim data-noescape>
+							class OrdersReport {
+							  protected $repo;
+							  protected $formatter;
+
+							  public function __construct(
+							    OrdersRepository $repo,
+							    OrdersOutPutInterface $formatter) {
+							      $this->repo = $repo;
+							      $this->formatter = $formatter;
+							  }
+
+							   public function getOrdersInfo($startDate, $endDate) {
+								 $orders = $this->repo->getOrdersWithDate($startDate, $endDate);
+
+							     return $this->formatter->output($orders);
+							   }
+							}
+						</code>
+					</pre>
+		</section>
+		<section>
+			<h2>The Open Closed Principle </h2>
+		    <h4>Принцип открытости/закрытости</h4>
+			<blockquote>
+				Программные объекты (классы, модули,  функции) должны быть открыты для расширения, но в тоже время закрыты для модификации.
+			</blockquote>
+		</section>
+		<section>
+			<h2>The Open Closed Principle </h2>
+			<pre>
+				<code data-trim data-noescape style="max-height: 900px">
+					class Rectangle {
+					  public $width;
+					  public $height;
+					  public function __construct($width, $height) {
+					    $this->width = $width;
+					    $this->height = $height;
+					  }
+					  class Circle {
+					    public $radius;
+					    public function __construct($radius) {
+					      $this->radius = $radius;
+					   }
+				      }
+					  class AreaCalculator {
+    				    public function calculate($shape) {
+					    if ($shape instanceof Rectangle) {
+					      $area = $shape->width * $shape->height;
+					    } else {
+					      $area = $shape->radius * $shape->radius * pi();
+					    }
+					    return $area;
+					  }
+					}}
+						</code>
+			</pre>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Добавить фигуру квадрат
+					</li>
+					<li>Нарушение принципа</li>
+					<li>
+						Можем расширять но не изменять
+					</li>
+				</ul>
+			</aside>
+			<h2>The Open Closed Principle </h2>
+			<pre>
+		<code data-trim data-noescape style="max-height: 900px">
+		interface AreaInterface {
+		  public  function calculateArea();
+		}
+
+		class Rectangle implements AreaInterface {
+		  public $width;
+		  public $height;
+
+		  public function __construct($width, $height) {
+		    $this->width = $width;
+		    $this->height = $height;
+		  }
+		  public  function calculateArea(){
+		    $area = $this->height *  $this->width;
+		    return $area;
+		  }
+		}
+
+		class AreaCalculator {
+		  public function calculate($shape) {
+		   return $shape->calculateArea();
+     }}
+
+	 $rectangle = new Rectangle(5, 4);
+	 $obj = new AreaCalculator();
+	 echo $obj->calculate($rectangle);
+		</code>
+			</pre>
+		</section>
+		<section>
+			<h2>Liskov Substitution Principle</h2>
+			<h4>Принцип подстановки Барбары Лисков</h4>
+			<blockquote>
+				Если каждому объекту  O1 типа S соответствует объект O2 типа T. Таким образом, всех программ P, определенных на основе T, поведение P не меняется при замене  O1 на O2, причем S является подтипом Т.
+			</blockquote>
+		</section>
+		<section>
+			<h2>Liskov Substitution Principle</h2>
+			<img src="img/what.jpg">
+		</section>
+		<section>
+
+			<aside class="notes">
+				<ul>
+					<li>
+						Подтипы должны быть заменяемы их исходными типами
+					</li>
+					<li>
+						Предварительные условия не могут быть усилены в подтипе.
+					</li>
+					<li>
+						Постусловия не могут быть ослаблены в подтипе.
+					</li>
+					<li>подкласс/производный класс должен быть взаимозаменяем с базовым/родительским классом.</li>
+				</ul>
+			</aside>
+			<h2>Liskov Substitution Principle</h2>
+			<ul>
+				<li>Подтипы должны быть заменяемы их исходными типами</li>
+				<li>
+					Предварительные условия не могут быть усилены в подтипе.
+				</li>
+				<li>
+					Постусловия не могут быть ослаблены в подтипе.
+				</li>
+			</ul>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Подтипы должны быть заменяемы их исходными типами
+					</li>
+					<li>
+						Предварительные условия не могут быть усилены в подтипе.
+					</li>
+					<li>
+						Постусловия не могут быть ослаблены в подтипе.
+					</li>
+					<li>подкласс/производный класс должен быть взаимозаменяем с базовым/родительским классом.</li>
+				</ul>
+			</aside>
+			<h2>Liskov Substitution Principle</h2>
+			<pre>
+				<code data-trim data-noescape style="max-height: 900px">
+				interface LessonRepositoryInterface {
+				  /**
+				   * @return array
+				   */
+				  public function getAll();
+				}
+
+				class FileLessonRepository implements LessonRepositoryInterface {
+				  public function getAll() {
+				     return FileStorage::getLessons();
+				  }
+				}
+
+				class DbLessonRepository implements LessonRepositoryInterface {
+				  public function getAll() {
+				    return LessonTable::all();
+				  }
+				}
+
+				class LessonTable {
+				  /**
+				    * @return Collection
+				    */
+				  static function all() {
+					//...
+				  }
+				}
+				</code>
+			</pre>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Подтипы должны быть заменяемы их исходными типами
+					</li>
+					<li>
+						Предварительные условия не могут быть усилены в подтипе.
+					</li>
+					<li>
+						Постусловия не могут быть ослаблены в подтипе.
+					</li>
+					<li>подкласс/производный класс должен быть взаимозаменяем с базовым/родительским классом.</li>
+				</ul>
+			</aside>
+			<h2>Liskov Substitution Principle</h2>
+			<pre>
+				<code data-trim data-noescape style="max-height: 900px">
+				interface LessonRepositoryInterface {
+				  /**
+				   * @return array
+				   */
+				  public function getAll();
+				}
+
+				class FileLessonRepository implements LessonRepositoryInterface {
+				  public function getAll() {
+				     return FileStorage::getLessons();
+				}
+
+				class DbLessonRepository implements LessonRepositoryInterface {
+				  public function getAll() {
+				    return LessonTable::all()->toArray();
+				  }
+				}
+
+				class LessonTable {
+				  /**
+				    * @return Collection
+				    */
+				  static function all() {
+					//...
+				  }
+				}
+				</code>
+			</pre>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Нельзя заставлять клиента реализовать интерфейс, которым он не пользуется.
+					</li>
+				</ul>
+		</aside>
+		<h2>Interface Segregation Principle</h2>
+		<h4>Принцип разделения интерфейса</h4>
+		<blockquote>
+			Нельзя заставлять клиента реализовать интерфейс, которым он не пользуется.
+		</blockquote>
+		</section>
+		<section>
+			<h2>Interface Segregation Principle</h2>
+			<pre>
+				<code data-trim data-noescape style="max-height: 900px">
+			interface workerInterface {
+			  public  function work();
+			  public  function  sleep();
+			}
+
+			class HumanWorker implements workerInterface {
+			  public  function work() {
+			    //
+			  }
+
+			  public  function  sleep() {
+			   //
+			  }
+			}
+
+			class RobotWorker implements workerInterface {
+			public  function work() {
+			  var_dump('works');
+			}
+
+			public  function sleep() {
+			  // Не нужен
+			 }
+			}
+				</code>
+			</pre>
+		</section>
+		<section>
+			<aside class="notes">
+				<ul>
+					<li>
+						Нельзя заставлять клиента реализовать интерфейс, которым он не пользуется.
+					</li>
+				</ul>
+			</aside>
+			<h2>Interface Segregation Principle</h2>
+			<pre>
+				<code data-trim data-noescape style="max-height: 900px">
+			interface WorkAbleInterface {
+			  public function work();
+			}
+
+			interface SleepAbleInterface {
+			  public function sleep();
+			}
+
+			class HumanWorker implements WorkAbleInterface, SleepAbleInterface {
+			  public function work() {
+			     //
+			  }
+
+			  public function sleep() {
+			    //
+			  }
+			}
+
+			class RobotWorker implements WorkAbleInterface {
+			  public  function work() {
+			   //
+			 }
+			}
+				</code>
+			</pre>
+		</section>
+		<section>
+			<h2>The Dependency Inversion Principle</h2>
+			<h4>Принцип инверсии зависимостей</h4>
+			<aside class="notes">
+				<ul>
+					<li>
+						Высокоуровневые модули не должны зависеть от низкоуровневых. Оба вида модулей должны зависеть от абстракций.
+					</li>
+					<li>
+						Абстракции не должны зависеть от подробностей. Подробности должны зависеть от абстракций.
+					</li>
+
+					<li>Один модуль заменяется другим через абстракцию</li>
+				</ul>
+			</aside>
+			<ul>
+				<li>
+					Высокоуровневые модули не должны зависеть от низкоуровневых. Оба вида модулей должны зависеть от абстракций.
+				</li>
+				<li>
+					Абстракции не должны зависеть от подробностей. Подробности должны зависеть от абстракций.
+				</li>
+
+			</ul>
+		</section>
+		<section>
+			<h2>The Dependency Inversion Principle</h2>
+			<aside class="notes">
+				<ul>
+					<li>
+						внедрения зависимостей != инверсия зависимостей
+					</li>
+					<li>
+						PasswordReminder зависит от MySQLConnection
+					</li>
+					<li>
+						MySQLConnection -> MongoDBConnection
+					</li>
+
+				</ul>
+			</aside>
+
+			<pre>
+				<code data-trim data-noescape style="max-height: 900px">
+				class MySQLConnection {
+
+				  public function connect() {
+				    //
+				  }
+				}
+
+				class PasswordReminder {
+				  private $dbConnection;
+
+				  public function __construct(MySQLConnection $dbConnection) {
+				    $this->dbConnection = $dbConnection;
+				  }
+				}
+				</code>
+			</pre>
+
+		</section>
+		<section>
+			<h2>The Dependency Inversion Principle</h2>
+			<aside class="notes">
+				<ul>
+					<li>
+						внедрения зависимостей != инверсия зависимостей
+					</li>
+					<li>
+						PasswordReminder зависит от MySQLConnection
+					</li>
+					<li>
+						MySQLConnection -> MongoDBConnection
+					</li>
+
+				</ul>
+			</aside>
+			<pre>
+				<code data-trim data-noescape style="max-height: 900px">
+			interface ConnectionInterface {
+			  public function connect();
+			}
+
+			class DbConnection implements ConnectionInterface {
+			  public function connect() {
+			   //
+			  }
+			}
+
+			class PasswordReminder {
+
+			  private $dbConnection;
+
+			  public function __construct(ConnectionInterface $dbConnection) {
+			    $this->dbConnection =  $dbConnection;
+			  }
+			}
+				</code>
+			</pre>
+		</section>
+
+		<section>
+			<ul>
+				<li>
+					Мартин Фаулер. Рефакторинг. Улучшение существующего кода
+				</li>
+				<li>
+					Роберт Мартин. Чистая архитектура. Искусство разработки программного обеспечения
+				</li>
+				<li>
+					Роберт Мартин. Training videos <a href="#">https://cleancoders.com/</a>
+				</li>
+				<li>
+					Ошибочное понимание принципа DRY <a href="#">https://habr.com/company/mailru/blog/349978/</a>
+				</li>
+				<li>KISS VS YAGNI: <a href="#">https://enterprisecraftsmanship.com/2015/06/15/kiss-revisited</a>
+				</li>
+				<li>
+					Простое объяснение принципов SOLID <a href="#">https://habr.com/company/mailru/blog/412699/</a>
+				</li>
+			</ul>
+		</section>
+		<section>
+			<table class="about">
+			<h2>
+			Спасибо за внимание!!!
+			</h2>
+			<tr>
+			<td style="vertical-align: middle" width="30%">
+			<img src="img/my_photo.jpg">
+			</td>
+			<td style="vertical-align: middle">
+
+			<ol style="list-style: none">
+			<li>
+				Telegram: @stadnik_andrey (https://t.me/stadnik_andrey)
+			</li>
+				<li> <br></li>
+			<li>
+				Email: stadnikandreypublic@gmail.com
+			</li>
+			</ol>
+			</td>
+			</tr>
+			</table>
+
+		</section>
+	</div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="js/cross.js"></script>
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        width: 1200,
+        height: 850,
+        transition: 'fade',
+        margin: 0.1,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+        maxScale: 1.5,
+        dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
